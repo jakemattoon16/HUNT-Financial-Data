@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HUNT Real Estate ERA — Financial &amp; Operational Intelligence Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       BASE RESET & TYPOGRAPHY
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:       #00D4C8;
+      --teal-light: rgba(0, 212, 200, 0.12);
+      --teal-rule:  rgba(0, 212, 200, 0.25);
+      --navy:       #0F1F2E;
+      --navy-mid:   #1A3450;
+      --body:       #444444;
+      --muted:      #6B7280;
+      --bg:         #F7FAFA;
+      --white:      #FFFFFF;
+      --border:     #E2E8EC;
+      --tag-est:    #F3F4F6;
+      --tag-est-text: #6B7280;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ============================================================
+       DOCUMENT HEADER
+    ============================================================ */
+    .doc-header {
+      background: var(--white);
+      border-bottom: 3px solid var(--teal);
+      padding: 2.75rem 0 2rem;
+      margin-bottom: 0;
+    }
+
+    .doc-header .page-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .doc-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .doc-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      max-width: 780px;
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .doc-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .doc-meta-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .doc-meta-value {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* ============================================================
+       SECTION STRUCTURE
+    ============================================================ */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid var(--teal-rule);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .section-number {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .section-body {
+      padding: 1.5rem 1.75rem;
+    }
+
+    /* ============================================================
+       STAT STRIP
+    ============================================================ */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 0 0 1.5rem;
+    }
+
+    .stat-block {
+      background: var(--white);
+      padding: 1.25rem 1rem 1rem;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-block:last-child { border-right: none; }
+
+    .stat-block.teal-bg {
+      background: var(--teal-light);
+    }
+
+    .stat-num {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-num.accent { color: var(--teal); }
+
+    .stat-label {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ============================================================
+       TABLES
+    ============================================================ */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 0 0 1.25rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .table-wrap:last-child { margin-bottom: 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    thead tr {
+      background: var(--teal);
+    }
+
+    thead th {
+      padding: 0.65rem 0.9rem;
+      font-weight: 600;
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+
+    tbody tr:nth-child(even) { background: #FAFBFB; }
+
+    tbody td {
+      padding: 0.6rem 0.9rem;
+      color: var(--body);
+      vertical-align: top;
+    }
+
+    tbody td.num {
+      font-variant-numeric: tabular-nums;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    tbody td.muted { color: var(--muted); font-size: 0.76rem; }
+
+    /* ============================================================
+       TAGS / BADGES
+    ============================================================ */
+    .tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+
+    .tag-est {
+      background: var(--tag-est);
+      color: var(--tag-est-text);
+      border: 1px solid #D1D5DB;
+    }
+
+    .tag-confirmed {
+      background: rgba(0,212,200,0.12);
+      color: #007A74;
+      border: 1px solid rgba(0,212,200,0.35);
+    }
+
+    .tag-benchmark {
+      background: #EEF2FF;
+      color: #4338CA;
+      border: 1px solid #C7D2FE;
+    }
+
+    /* ============================================================
+       INLINE CONTENT BLOCKS
+    ============================================================ */
+    .prose p {
+      font-size: 0.875rem;
+      color: var(--body);
+      margin-bottom: 0.75rem;
+    }
+
+    .prose p:last-child { margin-bottom: 0; }
+
+    .note-block {
+      background: var(--teal-light);
+      border-left: 3px solid var(--teal);
+      padding: 0.65rem 1rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.78rem;
+      color: var(--navy-mid);
+      margin: 1rem 0;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--teal-rule);
+      margin: 1.25rem 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .sub-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ============================================================
+       HEALTH INDICATOR DOTS
+    ============================================================ */
+    .health {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+    }
+
+    .health::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .health.growing::before   { background: #10B981; }
+    .health.stable::before    { background: #F59E0B; }
+    .health.tight::before     { background: #3B82F6; }
+    .health.contracting::before { background: #EF4444; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .doc-footer {
+      margin: 2.5rem 0 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--teal-rule);
+    }
+
+    .doc-footer p {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       PRINT STYLES
+    ============================================================ */
+    @media print {
+      body { background: #fff; font-size: 11px; }
+      .page-wrap { max-width: 100%; padding: 0 0.5rem; }
+      .section { break-inside: avoid; border: 1px solid #ccc; }
+      .stat-strip { break-inside: avoid; }
+      .table-wrap { break-inside: avoid; }
+      .doc-header { border-bottom: 2px solid #000; }
+      thead tr { background: #1A3450 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .stat-block.teal-bg { background: #f0fffe !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 700px) {
+      .doc-title { font-size: 1.35rem; }
+      .section-body { padding: 1rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .stat-strip { grid-template-columns: 1fr 1fr; }
+      .stat-block { border-bottom: 1px solid var(--border); }
+      .stat-block:nth-child(even) { border-right: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       DOCUMENT HEADER
+  ============================================================ -->
+  <div class="doc-header">
+    <div class="page-wrap">
+      <span class="doc-eyebrow">Confidential Briefing Document</span>
+      <h1 class="doc-title">HUNT Real Estate ERA — Financial &amp; Operational Intelligence Brief</h1>
+      <div class="doc-meta">
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Prepared For</span>
+          <span class="doc-meta-value">Steve Buck, President — Venturis Financial</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Subject</span>
+          <span class="doc-meta-value">HUNT Real Estate ERA — Charlie Hunt, CEO</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Data As Of</span>
+          <span class="doc-meta-value">June 2026 (most recent HUNT data: FY2025)</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Data Classification</span>
+          <span class="doc-meta-value">Public sources + derived estimates</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrap">
+
+    <!-- ============================================================
+         SECTION 1 — COMPANY OVERVIEW
+    ============================================================ -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-number">Section 01</span>
+        <h2 class="section-title">Company Overview</h2>
+      </div>
+      <div class="section-body">
+
+        <!-- Stat Strip -->
+        <div class="stat-strip">
+          <div class="stat-block teal-bg">
+            <span class="stat-num accent">$3.85B</span>
+            <span class="stat-label">FY2025 Sales Volume</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">11,738</span>
+            <span class="stat-label">FY2025 Transactions</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">1,552</span>
+            <span class="stat-label">Licensed Agents</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">57</span>
+            <span class="stat-label">Residential Offices</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Regions</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">1911</span>
+            <span class="stat-label">Founded</span>
+          </div>
+        </div>
+
+        <!-- Key facts table -->
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data Point</th>
+                <th>Detail</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Full Legal Name</td>
+                <td>HUNT Real Estate ERA</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Founded</td>
+                <td>1911</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Ownership</td>
+                <td>Fourth-generation family-owned; Charlie Hunt, CEO</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Headquarters</td>
+                <td>Buffalo, New York</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Geographic Footprint</td>
+                <td>New York State (6 regions); affiliated with ERA Key Realty Services (Massachusetts, ~14 offices)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Network Affiliation</td>
+                <td>ERA Real Estate (Anywhere Real Estate Inc.)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>ERA Network Rank — FY2025</td>
+                <td>#1 in sales volume and units sold — seventh consecutive year (recognized at ERA Fuel Conference, Austin TX, March 2026)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>RISMedia Power Broker Rank — 2026 (2025 calendar year data)</td>
+                <td>#33 by transaction sides; #60 by closed sales volume</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>RISMedia Power Broker Rank — 2025 (2024 calendar year data)</td>
+                <td>#28 by transaction sides; #60 by closed sales volume</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>RealTrends Verified Rank — Standalone HUNT ERA (most current)</td>
+                <td>#37 by transaction sides; #67 by closed sales volume — 11,591 sides; $3.78B; 1,487 agents; 57 offices; markets: NY and MA</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Core Services Provider Rank</td>
+                <td>#5 nationwide; #1 in New York State (RealTrends Core Services, 2023 data)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Arizona Operations</td>
+                <td>Arizona branch offices sold to Revinre LLC effective July 1, 2024</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Agent Count</td>
+                <td>1,552 licensed agents (cited in FY2025 ERA recognition press release, March 2026); RealTrends standalone profile shows 1,487 — variance likely reflects fiscal vs. calendar year timing or inclusion of ERA Key (MA) agents</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-block">
+          HUNT's fiscal year runs November 1 through October 31. All "FY" references in this document reflect that fiscal year. "FY2024" = November 1, 2023 – October 31, 2024. Financial rankings by RISMedia and RealTrends use calendar year data for comparison; direct comparisons across sources should account for this variance.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2 — FINANCIAL SNAPSHOT
+    ============================================================ -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-number">Section 02</span>
+        <h2 class="section-title">Financial Snapshot</h2>
+      </div>
+      <div class="section-body">
+
+        <!-- Annual volume table -->
+        <p class="sub-label">Annual Sales Volume &amp; Transaction History</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fiscal Year</th>
+                <th>Sales Volume</th>
+                <th>Transactions</th>
+                <th>Avg Sale Price</th>
+                <th>RISMedia Sides Rank</th>
+                <th>RISMedia Volume Rank</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FY2020</td>
+                <td class="num">$3.07B</td>
+                <td class="num">12,985</td>
+                <td class="num">$236,430</td>
+                <td class="num">#39</td>
+                <td class="num">#86</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>FY2021</td>
+                <td class="num">~$3.4–3.6B</td>
+                <td class="num">Not published</td>
+                <td class="num">—</td>
+                <td class="num">~#40</td>
+                <td class="num">—</td>
+                <td><span class="tag tag-est">Estimated</span></td>
+              </tr>
+              <tr>
+                <td>FY2022</td>
+                <td class="num">$4.076B</td>
+                <td class="num">13,824 (HUNT ERA NY only)<br>13,997 (combined w/ ERA Key)</td>
+                <td class="num">$295,000</td>
+                <td class="num">#34 (combined)</td>
+                <td class="num">#67 (up 23 spots)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>FY2023</td>
+                <td class="num">$3.5B</td>
+                <td class="num">11,839</td>
+                <td class="num">$295,700</td>
+                <td class="num">#31 (standalone) / #33 (combined)</td>
+                <td class="num">#60</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>FY2024</td>
+                <td class="num">$3.65B</td>
+                <td class="num">11,953</td>
+                <td class="num">$305,372</td>
+                <td class="num">#28 (standalone)</td>
+                <td class="num">#60</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td><strong>FY2025</strong></td>
+                <td class="num" style="font-weight:700; color: var(--navy);">$3.85B</td>
+                <td class="num" style="font-weight:700; color: var(--navy);">11,738</td>
+                <td class="num" style="font-weight:700; color: var(--navy);">$327,929</td>
+                <td class="num">#33 (standalone)</td>
+                <td class="num">#60</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-block">
+          FY2022 peak volume of $4.076B was HUNT's first time exceeding $4B in its 111-year history. FY2021 press release data was not publicly surfaced — the estimate of $3.4–3.6B is interpolated from surrounding fiscal years and the #40 RealTrends ranking. FY2021 figure should be treated as approximate. FY2025 avg sale price ($327,929) calculated from $3.85B ÷ 11,738 transactions — reflects continued price appreciation in HUNT's markets despite transaction count declining slightly from FY2024.
+        </div>
+
+        <hr class="divider" />
+
+        <!-- GCI and Revenue estimates -->
+        <p class="sub-label">GCI and Revenue Estimates — Methodology Shown</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Estimate</th>
+                <th>Methodology</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Average Transaction Price (FY2025)</td>
+                <td class="num">$327,929</td>
+                <td class="muted">$3.85B ÷ 11,738 transactions</td>
+                <td><span class="tag tag-confirmed">Calculated</span></td>
+              </tr>
+              <tr>
+                <td>Average Transaction Price (FY2024)</td>
+                <td class="num">$305,372</td>
+                <td class="muted">$3.65B ÷ 11,953 transactions</td>
+                <td><span class="tag tag-confirmed">Calculated</span></td>
+              </tr>
+              <tr>
+                <td>Estimated Avg Commission Rate (upstate NY)</td>
+                <td class="num">2.5%–2.8% per side</td>
+                <td class="muted">Industry benchmark for upstate NY residential market; total transaction commission ~5–5.5%, split buyer/seller side</td>
+                <td><span class="tag tag-benchmark">Industry Benchmark</span></td>
+              </tr>
+              <tr>
+                <td>Gross Commissions Earned — FY2025 (GCI Floor Estimate)</td>
+                <td class="num">~$96M</td>
+                <td class="muted">$3.85B × 2.5% avg commission rate. Actual GCI depends on how HUNT's transaction count reflects single vs. dual representation; this is a floor estimate.</td>
+                <td><span class="tag tag-est">Estimated</span></td>
+              </tr>
+              <tr>
+                <td>Company Dollar Estimate — FY2025 (brokerage gross revenue)</td>
+                <td class="num">~$19M–$29M</td>
+                <td class="muted">Industry average company dollar retention: 20%–30% of GCI after agent splits. At 20%: ~$19.2M; at 30%: ~$28.8M. Range reflects unknown split structure.</td>
+                <td><span class="tag tag-est">Estimated</span></td>
+              </tr>
+              <tr>
+                <td>Operating Profit (brokerage core) — Industry Benchmark</td>
+                <td class="num">3.7% of gross commission revenue</td>
+                <td class="muted">RealTrends brokerage benchmark average EBITDA margin on gross commission revenue (down from 4.5% in 2012). Excludes affiliated services contribution.</td>
+                <td><span class="tag tag-benchmark">Industry Benchmark</span></td>
+              </tr>
+              <tr>
+                <td>Affiliated Services Revenue</td>
+                <td class="num">Not publicly available</td>
+                <td class="muted">HUNT is a private company. RealTrends notes affiliated services (mortgage, title, insurance, property management) "provide a material increase to EBITDA" beyond brokerage margins for integrated brokerages.</td>
+                <td><span class="tag tag-est">Not Published</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-block">
+          HUNT Real Estate ERA is a privately held company and does not file public financial statements. All revenue and GCI figures above are derived estimates based on publicly confirmed volume figures and industry-standard commission and split benchmarks. No HUNT-specific revenue data has been confirmed through public sources.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3 — OPERATIONAL STRUCTURE
+    ============================================================ -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-number">Section 03</span>
+        <h2 class="section-title">Operational Structure</h2>
+      </div>
+      <div class="section-body">
+
+        <p class="sub-label">Division Overview</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Division</th>
+                <th>Function</th>
+                <th>Geographic Scope</th>
+                <th>Est. Revenue Contribution / Attachment Rate</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600;">HUNT Real Estate ERA<br><span style="font-weight:400; color:var(--muted); font-size:0.76rem;">(Core Brokerage)</span></td>
+                <td>Residential real estate brokerage, agent services, transaction management</td>
+                <td>New York State — 6 regions; 40–54 offices</td>
+                <td class="num">~$18M–$27M company dollar <span class="tag tag-est">Estimated</span></td>
+                <td class="muted">Primary revenue driver. ERA #1 for 6 consecutive years. FY2024: $3.65B, 11,953 sides.</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">HUNT Mortgage Corporation</td>
+                <td>Purchase mortgage origination integrated into HUNT transaction flow</td>
+                <td>NY, MA, AZ (pre-2024), FL, NH, CT</td>
+                <td class="num">Not published <span class="tag tag-est">No Public Data</span></td>
+                <td class="muted">Licensed multi-state; focused on purchase loans. Capture rate (attachment) not disclosed publicly. Builder-affiliated lender benchmark: 70–90%; resale-affiliated lenders typically 20–40%.</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">HUNT Insurance Agency</td>
+                <td>Home, auto, and umbrella insurance for homebuyers and existing clients</td>
+                <td>New York State</td>
+                <td class="num">Not published <span class="tag tag-est">No Public Data</span></td>
+                <td class="muted">Bundled homeownership services model. No public revenue or attachment rate data found.</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Network Title Agency of New York</td>
+                <td>Title insurance and closing services for NY residential transactions</td>
+                <td>New York State</td>
+                <td class="num">Not published <span class="tag tag-est">No Public Data</span></td>
+                <td class="muted">Founded 1992. RESPA-compliant affiliated business arrangement (ABA). NY title premium is regulated; brokers can receive up to 50% of title premium via ABA. Avg RESPA ABA title referral fee: ~$1,100/transaction (DC benchmark; NY rates similar).</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">HUNT Commercial Real Estate Corporation</td>
+                <td>Commercial real estate brokerage, leasing, investment sales</td>
+                <td>New York State — 4 commercial offices</td>
+                <td class="num">Not published <span class="tag tag-est">No Public Data</span></td>
+                <td class="muted">Acquired 2003. 4 commercial offices statewide. No public volume or revenue data found.</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">The Realty Club</td>
+                <td>Agent affinity / referral network (exact function not publicly detailed)</td>
+                <td>New York State</td>
+                <td class="num">Not published <span class="tag tag-est">No Public Data</span></td>
+                <td class="muted">Listed as a HUNT division. No independent financial or operational data surfaced in public sources.</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Revinre LLC</td>
+                <td>Flat-fee / fee-for-service brokerage with integrated mortgage, title, and insurance</td>
+                <td>Arizona (acquired HUNT AZ offices July 1, 2024); expanding</td>
+                <td class="num">Not published <span class="tag tag-est">No Public Data</span></td>
+                <td class="muted">Acquired HUNT's Arizona branch offices effective July 1, 2024. New Gilbert, AZ office opened at Greenfield Commons post-acquisition. Integrated services model. No public financial data.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">Attachment Rate Industry Context (Affiliated Services)</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Industry Avg Capture Rate</th>
+                <th>Top Performer Benchmark</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Affiliated Mortgage (Resale Brokerage)</td>
+                <td class="num">20%–40% <span class="tag tag-benchmark">Benchmark</span></td>
+                <td class="num">50%+ <span class="tag tag-benchmark">Benchmark</span></td>
+                <td class="muted">Builder-affiliated lenders run 70–90% due to captive buyer pool. Resale brokerages face open competition and consumer lender relationships. No resale-specific industry average has been published.</td>
+              </tr>
+              <tr>
+                <td>Affiliated Title (Resale Brokerage)</td>
+                <td class="num">30%–50% <span class="tag tag-benchmark">Benchmark</span></td>
+                <td class="num">60%+ <span class="tag tag-benchmark">Benchmark</span></td>
+                <td class="muted">Range varies significantly by state regulation and ABA disclosure compliance. NY is a regulated title market.</td>
+              </tr>
+              <tr>
+                <td>Affiliated Insurance (Resale Brokerage)</td>
+                <td class="num">10%–20% <span class="tag tag-benchmark">Benchmark</span></td>
+                <td class="num">30%+ <span class="tag tag-benchmark">Benchmark</span></td>
+                <td class="muted">Lowest attachment rate of the three; homebuyers frequently arrive with existing insurance providers. Touch point is typically at closing, not during transaction.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-block">No HUNT-specific attachment or capture rate data is publicly available. The benchmarks above are sourced from industry practitioner commentary, HousingWire, BuilderOnline, and Federal Title research. HUNT-specific rates would require internal disclosure.</div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4 — AGENT PRODUCTIVITY DATA
+    ============================================================ -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-number">Section 04</span>
+        <h2 class="section-title">Agent Productivity Data</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="stat-strip" style="margin-bottom:1.25rem;">
+          <div class="stat-block teal-bg">
+            <span class="stat-num accent">$327,929</span>
+            <span class="stat-label">Avg Sale Price (FY2025)</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">~7.6</span>
+            <span class="stat-label">Est. Transactions / Agent / Yr</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">~$2.48M</span>
+            <span class="stat-label">Est. Avg Volume / Agent / Yr</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">~$62K</span>
+            <span class="stat-label">Est. Avg Agent GCI / Yr</span>
+          </div>
+        </div>
+
+        <div class="note-block" style="margin-bottom:1.25rem;">
+          Calculated figures use 1,552 confirmed licensed agents (FY2025 ERA press release). RealTrends standalone profile shows 1,487 agents — that figure is also shown below. Both calculations use FY2025 confirmed data ($3.85B volume, 11,738 transactions).
+        </div>
+
+        <p class="sub-label">Agent Productivity — HUNT Calculated vs. Industry Benchmark (FY2025)</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>HUNT (1,552 agents)</th>
+                <th>HUNT (1,487 agents)</th>
+                <th>NAR Industry Median</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Annual Volume per Agent</td>
+                <td class="num">~$2.48M</td>
+                <td class="num">~$2.59M</td>
+                <td class="num">~$2.1M <span class="tag tag-benchmark">Benchmark</span></td>
+                <td><span class="tag tag-est">Calculated</span></td>
+              </tr>
+              <tr>
+                <td>Annual Transactions per Agent</td>
+                <td class="num">~7.6</td>
+                <td class="num">~7.9</td>
+                <td class="num">~7–8 <span class="tag tag-benchmark">Benchmark</span></td>
+                <td><span class="tag tag-est">Calculated</span></td>
+              </tr>
+              <tr>
+                <td>Estimated GCI per Agent</td>
+                <td class="num">~$62,000</td>
+                <td class="num">~$64,800</td>
+                <td class="num">$58,100 <span class="tag tag-confirmed">NAR 2025</span></td>
+                <td><span class="tag tag-est">Estimated</span></td>
+              </tr>
+              <tr>
+                <td>Average Sale Price (all agents)</td>
+                <td class="num">$327,929</td>
+                <td class="num">$327,929</td>
+                <td class="num">Varies by market</td>
+                <td><span class="tag tag-confirmed">Calculated</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">Agent Productivity Distribution — Industry Data (Updated 2025)</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Agent Segment</th>
+                <th>Share of Agents</th>
+                <th>Share of Transactions</th>
+                <th>Source / Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Top 1% of agents</td>
+                <td class="num">1%</td>
+                <td class="num">18% of all transactions</td>
+                <td class="muted">Mike DelPrete analysis, 3.4M sales / 840K producing agents, May 2025</td>
+              </tr>
+              <tr>
+                <td>Top 20% of agents</td>
+                <td class="num">20%</td>
+                <td class="num">65% of all transactions</td>
+                <td class="muted">Mike DelPrete, May 2025. Note: traditional "80/20 rule" (top 20% doing 80% of volume) is not supported by 2024 transaction data — the actual ratio is 65/20.</td>
+              </tr>
+              <tr>
+                <td>Bottom 50% of licensed agents</td>
+                <td class="num">50%+</td>
+                <td class="num">~0 transactions in a given year</td>
+                <td class="muted">More than half of credentialed Realtors complete zero transactions in any given year. Mike DelPrete, 2025.</td>
+              </tr>
+              <tr>
+                <td>NAR GCI Distribution — Under $50K</td>
+                <td class="num">37% of agents</td>
+                <td class="num">—</td>
+                <td class="muted">NAR 2025 Member Profile</td>
+              </tr>
+              <tr>
+                <td>NAR GCI Distribution — $50K–$100K</td>
+                <td class="num">28% of agents</td>
+                <td class="num">—</td>
+                <td class="muted">NAR 2025 Member Profile</td>
+              </tr>
+              <tr>
+                <td>NAR GCI Distribution — Over $300K</td>
+                <td class="num">12% of agents</td>
+                <td class="num">—</td>
+                <td class="muted">NAR 2025 Member Profile</td>
+              </tr>
+              <tr>
+                <td>NAR Median GCI — 16+ years experience</td>
+                <td class="num">—</td>
+                <td class="num">$78,900</td>
+                <td class="muted">NAR 2025 Member Profile</td>
+              </tr>
+              <tr>
+                <td>NAR Median GCI — 2 years or less experience</td>
+                <td class="num">—</td>
+                <td class="num">$8,100</td>
+                <td class="muted">NAR 2025 Member Profile</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-block">No HUNT-specific agent productivity distribution data is publicly available. The industry distribution data above reflects national NAR membership data and Mike DelPrete's analysis of 3.4M transactions across 840K producing agents. HUNT's distribution is unknown but expected to follow patterns consistent with a large multi-office traditional brokerage.</div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5 — COMPETITIVE BENCHMARKS
+    ============================================================ -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-number">Section 05</span>
+        <h2 class="section-title">Competitive Benchmarks</h2>
+      </div>
+      <div class="section-body">
+
+        <p class="sub-label">Top Competing Brokerages — Primary HUNT Markets</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Brokerage</th>
+                <th>Type</th>
+                <th>National Scale (2024)</th>
+                <th>WNY / Upstate NY Presence</th>
+                <th>Public Volume Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600;">Howard Hanna (Hanna Holdings)</td>
+                <td>Family-owned; independent</td>
+                <td class="num">$33.74B volume; 92,154 sides; 500+ offices; 15,000+ agents; #5 nationally by sides, #7 by volume (RealTrends 2025)</td>
+                <td>Dominant presence in Buffalo and Rochester; HUNT's primary direct competitor in WNY</td>
+                <td><span class="tag tag-confirmed">Confirmed — press release</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">MJ Peterson Real Estate</td>
+                <td>Regional independent</td>
+                <td>Regional only; no national ranking found</td>
+                <td>Founded 1930; Western New York–focused; 8 offices; 200+ agents; residential + commercial + property management + rentals</td>
+                <td><span class="tag tag-est">No public volume data</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Berkshire Hathaway HomeServices (upstate affiliates)</td>
+                <td>National franchise; regional affiliates</td>
+                <td>National brand; individual affiliate data not consolidated</td>
+                <td>BHHS CNY Realty (Syracuse area — Camillus, Fayetteville, N. Syracuse, Oswego, Skaneateles, Utica, Watertown, Cazenovia); BHHS WNY / Discover Real Estate (Rochester area); Adirondack Premier Properties (Adirondacks — $150M+ sold in 2024)</td>
+                <td><span class="tag tag-est">Partial — Adirondack data only</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Coldwell Banker Prime Properties</td>
+                <td>National franchise; regional affiliate</td>
+                <td>Regional only; no national ranking found</td>
+                <td>Capital Region, CNY, Adirondacks, Catskills</td>
+                <td><span class="tag tag-est">No public volume data</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">RE/MAX (regional offices)</td>
+                <td>National franchise; independently owned offices</td>
+                <td>National network</td>
+                <td>Individual offices throughout upstate NY; volumes not publicly aggregated for the region</td>
+                <td><span class="tag tag-est">No regional aggregate data</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">ERA Network Context</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HUNT ERA Rank in ERA Network — FY2024</td>
+                <td class="num">#1 in sales volume and units sold</td>
+                <td class="muted">ERA Real Estate official recognition; confirmed via HUNT blog and WAV Group, March 2025</td>
+              </tr>
+              <tr>
+                <td>Consecutive Years at #1 in ERA Network</td>
+                <td class="num">6 years</td>
+                <td class="muted">As of FY2024 announcement, March 2025</td>
+              </tr>
+              <tr>
+                <td>ERA Parent Company</td>
+                <td>Anywhere Real Estate Inc. (formerly Realogy)</td>
+                <td class="muted">Public company (NYSE: HOUS); parent also owns Coldwell Banker, Century 21, Better Homes and Gardens Real Estate</td>
+              </tr>
+              <tr>
+                <td>HUNT Standalone National Rank (RISMedia Power Brokers 2025)</td>
+                <td class="num">#28 by sides; #60 by volume</td>
+                <td class="muted">RISMedia Power Broker Report 2025</td>
+              </tr>
+              <tr>
+                <td>HUNT Combined Rank (with ERA Key — RealTrends Verified)</td>
+                <td class="num">#33 by sides (2023 data)</td>
+                <td class="muted">RealTrends Verified 500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-block">No market share figures for individual brokerages within WNY or upstate NY submarkets are publicly available. Neither HUNT, Howard Hanna, MJ Peterson, nor regional BHHS affiliates publish region-specific market share data. The dominance of Howard Hanna nationally ($33.74B vs. HUNT's $3.65B) reflects Howard Hanna's multi-state footprint; head-to-head comparisons within specific upstate NY markets are not available through public data.</div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6 — OPERATIONAL BENCHMARKS
+    ============================================================ -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <span class="section-number">Section 06</span>
+        <h2 class="section-title">Operational Benchmarks</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="note-block" style="margin-bottom:1.25rem;">
+          All figures in this section are industry standard data only. No HUNT-specific claims. These represent benchmarks for the residential brokerage industry at scale, sourced from RealTrends, NAR, HousingWire, and independent research. They are labeled "Industry Benchmark" throughout.
+        </div>
+
+        <p class="sub-label">Brokerage Operations Benchmark Table</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Operational Metric</th>
+                <th>Industry Average</th>
+                <th>Top Performer Benchmark</th>
+                <th>Data Point Context</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lead-to-Close Conversion Rate (all online sources)</td>
+                <td class="num">0.4%–2%</td>
+                <td class="num">5%–12%+</td>
+                <td class="muted">Broad range reflects lead source quality. 1–2 deals per 200 leads is a commonly cited blended average across all inbound channels.</td>
+                <td class="muted">RealGeeks; Follow Up Boss</td>
+              </tr>
+              <tr>
+                <td>Lead-to-Close (high-intent sources — Zillow/Realtor.com)</td>
+                <td class="num">~5%</td>
+                <td class="num">7%–9%</td>
+                <td class="muted">Bottom-of-funnel leads from portals convert materially higher than broad top-of-funnel digital leads.</td>
+                <td class="muted">Follow Up Boss industry data</td>
+              </tr>
+              <tr>
+                <td>Lead-to-Close (referral + repeat clients)</td>
+                <td class="num">2%–5% blended</td>
+                <td class="num">—</td>
+                <td class="muted">Referral and repeat clients convert higher than any cold digital channel.</td>
+                <td class="muted">Industry practitioner data</td>
+              </tr>
+              <tr>
+                <td>Lead Response Time Benchmark</td>
+                <td class="num">Response within 5 minutes = 9× higher contact rate</td>
+                <td class="num">Immediate (under 1 min) auto-response + human follow-up within 5 min</td>
+                <td class="muted">Lead response speed is the single largest driver of contact rate conversion in real estate lead management research.</td>
+                <td class="muted">Harvard Business Review / Inside Sales research; referenced broadly across real estate platforms</td>
+              </tr>
+              <tr>
+                <td>CRM Adoption Rate — Multi-Office Brokerages (2025)</td>
+                <td class="num">78% of agents have a CRM; 73% average user adoption rate</td>
+                <td class="num">80%+ active use</td>
+                <td class="muted">NAR 2024 study shows ~40% of Realtors rarely or never use their CRM; 45% use it only a few times per month; 1 in 4 never use it. Tool adoption vs. active utilization are materially different metrics.</td>
+                <td class="muted">LLCBuddy CRM stats (2025); RISMedia; NAR 2024</td>
+              </tr>
+              <tr>
+                <td>Mortgage Capture Rate — Affiliated Brokerage Lender (Resale)</td>
+                <td class="num">~20%–40%</td>
+                <td class="num">50%+</td>
+                <td class="muted">Builder-affiliated lenders run 70–90% (captive buyer). Resale brokerage affiliated lenders face open competition. No industry-wide published benchmark for resale-affiliated mortgage exists; 20–40% is a practitioner-cited range.</td>
+                <td class="muted">HousingWire; BuilderOnline</td>
+              </tr>
+              <tr>
+                <td>Title Attachment Rate — Affiliated Brokerage Title (Resale)</td>
+                <td class="num">~30%–50%</td>
+                <td class="num">60%+</td>
+                <td class="muted">Regulated by RESPA ABA disclosure requirements. NY is a regulated title market. Rate varies significantly by integration model and agent compliance.</td>
+                <td class="muted">Federal Title research; RESPA ABA guidelines</td>
+              </tr>
+              <tr>
+                <td>Insurance Attachment Rate — Affiliated Brokerage Insurance</td>
+                <td class="num">~10%–20%</td>
+                <td class="num">30%+</td>
+                <td class="muted">Lowest of the three affiliated service categories. Consumer insurance relationships are typically established; touchpoint is usually at or near closing rather than during the transaction search phase.</td>
+                <td class="muted">Industry practitioner commentary</td>
+              </tr>
+              <tr>
+                <td>Agent Annual Turnover Rate (2025)</td>
+                <td class="num">6.8%</td>
+                <td class="num">—</td>
+                <td class="muted">Up from 6.0% prior year. 13% of active business operators switched brokerages in 2024. #1 reason cited: lack of support, slow commission payouts, outdated technology.</td>
+                <td class="muted">HousingWire Agent Migration Study 2025</td>
+              </tr>
+              <tr>
+                <td>12-Month Agent Retention — Internally Promoted/Transferred</td>
+                <td class="num">89%</td>
+                <td class="num">—</td>
+                <td class="muted">Agents who move within the same brand/holding company show higher 12-month retention.</td>
+                <td class="muted">HousingWire Agent Migration Study 2025</td>
+              </tr>
+              <tr>
+                <td>12-Month Agent Retention — Externally Recruited</td>
+                <td class="num">76%</td>
+                <td class="num">—</td>
+                <td class="muted">Externally recruited agents show lower 12-month retention; first-year support materially affects this rate.</td>
+                <td class="muted">HousingWire Agent Migration Study 2025</td>
+              </tr>
+              <tr>
+                <td>Cost Per Lead — Blended Average (all channels)</td>
+                <td class="num">$416–$480</td>
+                <td class="num">—</td>
+                <td class="muted">First Page Sage blended enterprise benchmark. Includes digital, content, paid, and organic channels.</td>
+                <td class="muted">First Page Sage (2025)</td>
+              </tr>
+              <tr>
+                <td>Cost Per Lead — Google Search Ads</td>
+                <td class="num">$50–$150</td>
+                <td class="num">—</td>
+                <td class="muted">Highest intent; highest cost per lead.</td>
+                <td class="muted">Ylopo; FetchFunnel (2025)</td>
+              </tr>
+              <tr>
+                <td>Cost Per Lead — Facebook / Instagram</td>
+                <td class="num">$5–$80</td>
+                <td class="num">—</td>
+                <td class="muted">Lower intent leads; lower upfront cost but typically lower conversion rates.</td>
+                <td class="muted">Ylopo; FetchFunnel (2025)</td>
+              </tr>
+              <tr>
+                <td>Brokerage EBITDA Margin (on gross commission revenue)</td>
+                <td class="num">3.7%</td>
+                <td class="num">—</td>
+                <td class="muted">RealTrends benchmark average, down from 4.5% in 2012. This margin figure excludes affiliated services (mortgage, title, insurance), which RealTrends notes "provide a material increase to EBITDA" for integrated brokerages.</td>
+                <td class="muted">RealTrends Brokerage Benchmark Report</td>
+              </tr>
+              <tr>
+                <td>Typical Commission Split (traditional structure)</td>
+                <td class="num">50/50 (entry) → 70/30 or 80/20 (experienced)</td>
+                <td class="num">—</td>
+                <td class="muted">Graduated split structures are standard at traditional multi-office brokerages. Capped models (KW, eXp-style) run 80/20 with a cap of $16K–$30K, after which agents retain 100% (less admin fees of $250–$500/deal).</td>
+                <td class="muted">Industry standard</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7 — NATIONAL MARKET & INDUSTRY CONTEXT
+    ============================================================ -->
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-number">Section 07</span>
+        <h2 class="section-title">National Market &amp; Industry Context</h2>
+      </div>
+      <div class="section-body">
+
+        <!-- National housing market stat strip -->
+        <div class="stat-strip" style="margin-bottom:1.25rem;">
+          <div class="stat-block teal-bg">
+            <span class="stat-num accent">4.06M</span>
+            <span class="stat-label">US Existing Home Sales 2025</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">$405,400</span>
+            <span class="stat-label">National Median Price Dec 2025</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">30-yr low</span>
+            <span class="stat-label">2025 Sales Volume (2nd consecutive year)</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">~6%</span>
+            <span class="stat-label">Avg 30-Yr Rate (Year-End 2025)</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">$238.5B</span>
+            <span class="stat-label">US Brokerage Industry Revenue 2024</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-num">1.52M</span>
+            <span class="stat-label">NAR Membership (Realtors)</span>
+          </div>
+        </div>
+
+        <p class="sub-label">US Existing Home Sales — Annual Trend</p>
+        <div class="table-wrap" style="margin-bottom:1.25rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Existing Home Sales</th>
+                <th>YoY Change</th>
+                <th>Context</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2021</td>
+                <td class="num">6.12 million</td>
+                <td class="num" style="color:#10B981;">Post-pandemic peak</td>
+                <td class="muted">Highest annual sales volume in 15 years; record-low rates drove demand surge</td>
+                <td class="muted">NAR</td>
+              </tr>
+              <tr>
+                <td>2022</td>
+                <td class="num">~5.03 million</td>
+                <td class="num" style="color:#EF4444;">−18%</td>
+                <td class="muted">Rapid rate increases (from ~3% to 7%) suppressed buyer demand sharply in second half</td>
+                <td class="muted">NAR</td>
+              </tr>
+              <tr>
+                <td>2023</td>
+                <td class="num">~4.09 million</td>
+                <td class="num" style="color:#EF4444;">−19%</td>
+                <td class="muted">Lock-in effect — existing owners with sub-3% mortgages unwilling to sell; inventory near historic lows</td>
+                <td class="muted">NAR</td>
+              </tr>
+              <tr>
+                <td>2024</td>
+                <td class="num">4.06 million</td>
+                <td class="num" style="color:#EF4444;">−1%</td>
+                <td class="muted">Lowest annual figure since 1995 — nearly 30-year low. Ended on slight upswing (Dec 2024 SAAR: 4.24M, +5.1% from Nov)</td>
+                <td class="muted">NAR; Eye on Housing; BuilderOnline</td>
+              </tr>
+              <tr>
+                <td><strong>2025</strong></td>
+                <td class="num" style="font-weight:700; color:var(--navy);">4.06 million</td>
+                <td class="num" style="color:#EF4444;">Flat (0%)</td>
+                <td class="muted">Second consecutive year at the 30-year low. December 2025 SAAR: 4.35M — highest single month since February 2023, but insufficient to lift the full-year figure. Mortgage rates moved from ~7% at year-start to ~6% by year-end.</td>
+                <td class="muted">NAR; PBS NewsHour Jan 2026; Eye on Housing Jan 2026; CNBC Jan 14, 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="sub-label">National Housing Market Indicators — 2025 (Most Recent Available)</p>
+        <div class="table-wrap" style="margin-bottom:1.25rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Notes</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>National Median Existing Home Price — December 2025</td>
+                <td class="num">$405,400</td>
+                <td class="muted">+0.4% YoY. 30th consecutive month of YoY price increases. Q3 2025 single-family median: $426,800 (+1.7%); Q4 2025: $414,900 (+1.2%). Annual range across 2025: ~$403K–$427K depending on month/housing type. 73% of metro areas saw positive price gains in Q4 2025.</td>
+                <td class="muted">NAR; Eye on Housing Jan 2026</td>
+              </tr>
+              <tr>
+                <td>National Median Existing Home Price — Full Year 2024</td>
+                <td class="num">$407,500</td>
+                <td class="muted">Record annual high for 2024. Price appreciation slowed materially in 2025 (0.4% vs 6% in 2024).</td>
+                <td class="muted">NAR</td>
+              </tr>
+              <tr>
+                <td>December 2025 SAAR</td>
+                <td class="num">4.35 million</td>
+                <td class="muted">Highest single-month pace since February 2023; up 5.1% MoM. Suggests potential 2026 recovery but full-year 2025 average remained at floor.</td>
+                <td class="muted">NAR; CNBC Jan 14, 2026</td>
+              </tr>
+              <tr>
+                <td>Average 30-Year Fixed Mortgage Rate — 2025 Trajectory</td>
+                <td class="num">~7% (start) → ~6% (year-end)</td>
+                <td class="muted">Rate compression through 2025 did not meaningfully unlock seller lock-in or substantially lift transaction volume. 2024 annual average was ~6.7%.</td>
+                <td class="muted">Freddie Mac PMMS / FRED</td>
+              </tr>
+              <tr>
+                <td>US Homeownership Rate (Q3 2024 — most recent confirmed)</td>
+                <td class="num">65.6%</td>
+                <td class="muted">Below 25-year average of 66.4%. Under-35 cohort: 37.4% — a four-year low.</td>
+                <td class="muted">Census Bureau HVS; NAHB</td>
+              </tr>
+              <tr>
+                <td>Total Combined Residential Transaction Volume (2024 est.)</td>
+                <td class="num">~$1.9–$2.0 trillion</td>
+                <td class="muted">Derived: 4.06M existing × $407,500 median (~$1.65T) + 683K new homes × ~$420K median (~$287B). Most recent available full-year estimate.</td>
+                <td class="muted"><span class="tag tag-est">Estimated</span></td>
+              </tr>
+              <tr>
+                <td>Total Mortgage Origination Volume (2024 est.)</td>
+                <td class="num">~$1.7–$1.8 trillion</td>
+                <td class="muted">MBA forecast. Purchase originations ~70%+ of volume. MBA 2025 forecast was $2.3T — 2025 final actuals not yet fully published.</td>
+                <td class="muted">MBA; ATTOM <span class="tag tag-est">Estimated</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">National Brokerage Landscape — RealTrends Verified 2024 Rankings (2023 transaction data)</p>
+        <div class="note-block" style="margin-bottom:1rem;">RealTrends Verified publishes rankings on a one-year lag. The "2024 rankings" listed below reflect calendar year 2023 transaction data. This is the standard publication cycle for the industry's primary ranking source.</div>
+        <div class="table-wrap" style="margin-bottom:1.25rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank (by Volume)</th>
+                <th>Brokerage</th>
+                <th>2024 Sales Volume</th>
+                <th>Model</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="num">#1</td>
+                <td style="font-weight:600;">Compass</td>
+                <td class="num">$184 billion</td>
+                <td class="muted">Traditional / technology brokerage; publicly traded (COMP)</td>
+                <td class="muted">RealTrends Verified 2024; HousingWire</td>
+              </tr>
+              <tr>
+                <td class="num">#2–4</td>
+                <td style="font-weight:600;">Anywhere Advisors, HomeServices of America, eXp Realty</td>
+                <td class="num">Not individually confirmed at this rank</td>
+                <td class="muted">Compass, Anywhere, HomeServices, eXp occupy the top 4 by volume; exact ranking order between #2–4 not broken out in public sources</td>
+                <td class="muted">RealTrends Verified 2024</td>
+              </tr>
+              <tr>
+                <td class="num">#1 (by sides)</td>
+                <td style="font-weight:600;">eXp Realty</td>
+                <td class="num">355,052 sides</td>
+                <td class="muted">Virtual cloud brokerage; independent contractor model</td>
+                <td class="muted">RealTrends Verified 2024</td>
+              </tr>
+              <tr>
+                <td class="num">#5 (by sides)</td>
+                <td style="font-weight:600;">Howard Hanna (Hanna Holdings)</td>
+                <td class="num">92,154 sides; $33.74B volume</td>
+                <td class="muted">Family-owned regional; HUNT's primary direct competitor</td>
+                <td class="muted">Hanna Holdings press release; RealTrends 2025</td>
+              </tr>
+              <tr>
+                <td class="num">#33 (by sides, 2026 report)</td>
+                <td style="font-weight:600;">HUNT Real Estate ERA (standalone)</td>
+                <td class="num">11,738 sides; $3.85B volume (FY2025)</td>
+                <td class="muted">Family-owned; ERA affiliate; #1 within ERA network for 7th consecutive year</td>
+                <td class="muted">RISMedia Power Broker Report 2026; HUNT press release March 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-block" style="margin-bottom:1.25rem;">
+          Independent brokerages claimed 27% of RealTrends Verified brokerage market share in 2023, up 4% from 2022. The top 10 brokerages by volume collectively represent a significant but unquantified share of the ~$1.9–2.0T total US residential market. Compass alone at $184B represents approximately 9–10% of the total existing-home market by dollar volume.
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">ERA Real Estate Network — National Scale</p>
+        <div class="table-wrap" style="margin-bottom:1.25rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ERA Network — Affiliated Agents</td>
+                <td class="num">43,000+</td>
+                <td class="muted">ERA.com / ERA network marketing materials</td>
+              </tr>
+              <tr>
+                <td>ERA Network — Offices</td>
+                <td class="num">~2,300</td>
+                <td class="muted">ERA.com</td>
+              </tr>
+              <tr>
+                <td>ERA Network — Geographic Reach</td>
+                <td class="num">US + 37–39 countries and territories</td>
+                <td class="muted">ERA.com; Anywhere Real Estate Wikipedia</td>
+              </tr>
+              <tr>
+                <td>ERA Network — Annual Sales Volume (self-reported)</td>
+                <td class="num">~$23.7 billion across ~71,000 transaction sides</td>
+                <td class="muted">ERA network marketing materials <span class="tag tag-est">ERA-published, not independently verified</span></td>
+              </tr>
+              <tr>
+                <td>ERA Network — Position within Anywhere Real Estate</td>
+                <td class="muted" colspan="2">ERA is one of 7 Anywhere brands. Anywhere's top-agent rankings (RealTrends) show ERA placing 10 agents in the Top 250 by transaction sides, trailing Coldwell Banker (28) and Century 21 (32) within the Anywhere portfolio. Luxury brands (Sotheby's, Corcoran, Coldwell Banker Global Luxury) are Anywhere's high-GCI contributors.</td>
+              </tr>
+              <tr>
+                <td>HUNT as % of ERA Network Volume (est.)</td>
+                <td class="num">~16.2%</td>
+                <td class="muted">$3.85B HUNT FY2025 ÷ $23.7B ERA network self-reported volume = ~16.2%. Consistent with HUNT's #1 ERA ranking for 7th consecutive year. <span class="tag tag-est">Estimated</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">Anywhere Real Estate (formerly NYSE: HOUS) — HUNT's Franchisor Parent</p>
+        <div class="note-block" style="margin-bottom:1rem;">
+          Compass announced acquisition of Anywhere Real Estate on September 22, 2025. Merger closed and Anywhere was delisted from NYSE on January 9, 2026. Anywhere is now a wholly owned subsidiary of Compass. Each HOUS share converted to 1.436 shares of Compass Class A common stock. Combined company has approximately 1.2 million annual transactions. ERA remains an active brand within the combined entity.
+        </div>
+        <div class="table-wrap" style="margin-bottom:1.25rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Full Year 2025</th>
+                <th>Full Year 2024</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Total Revenue</td>
+                <td class="num">$5.96 billion</td>
+                <td class="num">$5.69 billion</td>
+                <td class="muted">Compass 8-K (Anywhere final filing); MarketScreener</td>
+              </tr>
+              <tr>
+                <td>Net Income / Loss</td>
+                <td class="num" style="color:#EF4444;">−$90 million</td>
+                <td class="num" style="color:#EF4444;">−$128 million</td>
+                <td class="muted">Improved $38M YoY — still GAAP-negative driven by non-cash and interest charges</td>
+              </tr>
+              <tr>
+                <td>Operating EBITDA</td>
+                <td class="num">$294 million</td>
+                <td class="num">$290 million</td>
+                <td class="muted">Compass 8-K; Anywhere IR</td>
+              </tr>
+              <tr>
+                <td>Total Closed Homesale Sides (Franchise + Owned)</td>
+                <td class="num">935,344</td>
+                <td class="num">~949,000 (est.)</td>
+                <td class="muted">Franchise group: 687,346 sides; Owned brokerage (Anywhere Advisors): 247,998 sides</td>
+              </tr>
+              <tr>
+                <td>Anywhere Advisors — Owned Brokerage Volume</td>
+                <td class="num">$183.81B volume; 247,998 sides</td>
+                <td class="num">$183.81B volume; 246,728 sides</td>
+                <td class="muted">Owned brokerage segment only; excludes franchise network</td>
+              </tr>
+              <tr>
+                <td>Title Purchase Units (FY2025)</td>
+                <td class="num">102,008</td>
+                <td class="num">—</td>
+                <td class="muted">Compass 8-K</td>
+              </tr>
+              <tr>
+                <td>Compass Standalone Revenue (FY2025)</td>
+                <td class="num">$7.0 billion (record)</td>
+                <td class="num">—</td>
+                <td class="muted">Compass IR; combined Compass + Anywhere entity going forward</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">US Brokerage Industry — Size and Composition</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>US Real Estate Sales &amp; Brokerage Industry Revenue (2024)</td>
+                <td class="num">$238.5 billion</td>
+                <td class="muted">IBISWorld; up 3.1% in 2024</td>
+              </tr>
+              <tr>
+                <td>NAR Membership (Realtors) — Late 2024</td>
+                <td class="num">1,523,695</td>
+                <td class="muted">Held above 1.5M through October 2024; dipped below 1.5M entering January 2025. Source: Real Estate News; HousingWire</td>
+              </tr>
+              <tr>
+                <td>Total Active Real Estate Licenses (US)</td>
+                <td class="num">~3 million</td>
+                <td class="muted">ARELLO estimate via HomeLight. Includes licensed agents who are not NAR members.</td>
+              </tr>
+              <tr>
+                <td>Total US Residential Transactions 2024 (Existing + New)</td>
+                <td class="num">~4.74 million</td>
+                <td class="muted">4.06M existing (NAR) + 683K new (Census/HUD)</td>
+              </tr>
+              <tr>
+                <td>HUNT Transactions as % of US Total (rough)</td>
+                <td class="num">~0.25%</td>
+                <td class="muted">11,953 HUNT sides ÷ 4.74M total US transactions. <span class="tag tag-est">Estimated — rough approximation</span></td>
+              </tr>
+              <tr>
+                <td>eXp Realty Sides as % of US Total</td>
+                <td class="num">~7.5%</td>
+                <td class="muted">355,052 sides ÷ 4.74M total. Scale context for the largest brokerage by sides.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 8 — RAW DATA NOTES
+    ============================================================ -->
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-number">Section 08</span>
+        <h2 class="section-title">Raw Data Notes — Sources, Confirmations &amp; Methodology</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="note-block" style="margin-bottom:1.25rem;">
+          This section catalogs every data source used, the status of each figure (confirmed / estimated / calculated / industry benchmark), and the methodology for any derived numbers. All HUNT-specific financial data comes from public press releases, trade publication rankings, and nationally published reports. HUNT is a private company; no SEC filings or audited financial statements are available.
+        </div>
+
+        <p class="sub-label">Source Catalog</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data Point</th>
+                <th>Status</th>
+                <th>Primary Source</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FY2025 Sales Volume ($3.85B) and Transactions (11,738)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT Real Estate blog, March 4, 2026 — "HUNT Real Estate Named #1 ERA Brokerage for Seventh Consecutive Year"; ERA Fuel Conference, Austin TX, March 2–5, 2026</td>
+                <td class="muted">Primary source: HUNT's own press release. Consistent with RISMedia 2026 Power Broker recognition (March 31, 2026).</td>
+              </tr>
+              <tr>
+                <td>FY2025 Agent Count (1,552) and Office Count (57)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Cited in FY2025 ERA recognition press release, March 2026. RealTrends standalone profile shows 1,487 agents / 57 offices — variance likely reflects fiscal vs. calendar year timing or ERA Key inclusion.</td>
+                <td class="muted">—</td>
+              </tr>
+              <tr>
+                <td>RISMedia 2026 Power Broker Rank (#33 sides / #60 volume)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">RISMedia Power Broker Report 2026, published March 31, 2026. Local coverage: NYREJ; Post-Star. Full ranked list behind paywall at pb.rismedia.com.</td>
+                <td class="muted">One source cited #50 for volume — #60 treated as more reliable pending direct report access.</td>
+              </tr>
+              <tr>
+                <td>RealTrends Verified Standalone HUNT Rank (#37 sides / #67 volume / $3.78B / 11,591 sides)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">RealTrends Verified live profile: realtrends.com/brokerage-profile/hunt-real-estate-era-buffalo-ny/ — most current profile data as of June 2026. Markets listed: New York and Massachusetts.</td>
+                <td class="muted">This reflects calendar year data (one-year lag); differs from HUNT's FY2025 fiscal year press release figures. Both are valid depending on measurement period.</td>
+              </tr>
+              <tr>
+                <td>FY2024 Sales Volume ($3.65B)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT Real Estate blog, March 2025; WAV Group, March 2025; RBJ (Rochester Business Journal), March 2025</td>
+                <td class="muted">Consistent across multiple independent sources</td>
+              </tr>
+              <tr>
+                <td>FY2024 Transactions (11,953)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Same sources as above</td>
+                <td class="muted">Consistent across multiple independent sources</td>
+              </tr>
+              <tr>
+                <td>FY2022 Sales Volume ($4.076B) and Transactions (13,824)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT Real Estate blog, December 2022</td>
+                <td class="muted">HUNT described this as a record in their 111-year history</td>
+              </tr>
+              <tr>
+                <td>FY2023 Sales Volume ($3.5B) and Transactions (11,839)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">WAV Group, March 2024; HUNT blog, 2024</td>
+                <td class="muted">Consistent across multiple sources</td>
+              </tr>
+              <tr>
+                <td>FY2020 Sales Volume ($3.07B) and Transactions (12,985)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT Real Estate blog, April 2021</td>
+                <td class="muted">Published at time of FY2020 rankings announcement</td>
+              </tr>
+              <tr>
+                <td>FY2021 Sales Volume (~$3.4–3.6B)</td>
+                <td><span class="tag tag-est">Estimated</span></td>
+                <td class="muted">No press release or ranking announcement surfaced for FY2021 specifically</td>
+                <td class="muted">Interpolated from FY2020 ($3.07B), FY2022 ($4.08B), and the approximate #40 RealTrends ranking in 2021. Treat as approximate.</td>
+              </tr>
+              <tr>
+                <td>ERA Network #1 Ranking (6 consecutive years)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT blog March 2025; WAV Group March 2025; ERA official announcement</td>
+                <td class="muted">Applies to both volume and units sold categories</td>
+              </tr>
+              <tr>
+                <td>RISMedia Power Broker Rankings (#28 sides, #60 volume)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT blog, April 2025; RISMedia Power Broker Report 2025</td>
+                <td class="muted">Reflects standalone NY entity; combined with ERA Key ranks higher</td>
+              </tr>
+              <tr>
+                <td>Agent Count (~1,300 NY entity)</td>
+                <td><span class="tag tag-est">Estimated — likely accurate</span></td>
+                <td class="muted">ERA.com profile; HUNT website</td>
+                <td class="muted">"~1,800" figure appears in some ERA network recruiting materials and may include ERA Key (MA) or be from a peak period. The ~1,300 figure is the more consistent NY-standalone figure.</td>
+              </tr>
+              <tr>
+                <td>Office Count (40–54)</td>
+                <td><span class="tag tag-est">Range — not single confirmed figure</span></td>
+                <td class="muted">WAV Group noted "60 residential branch offices" in early 2024 release (included AZ + ERA Key MA offices pre-Revinre deal). Post-July 2024 AZ divestiture reduces the total.</td>
+                <td class="muted">NY-only office count is not published as a standalone figure. 40–54 is the inferred range after AZ divestiture.</td>
+              </tr>
+              <tr>
+                <td>Network Title Founded 1992</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT corporate division page</td>
+                <td class="muted">—</td>
+              </tr>
+              <tr>
+                <td>HUNT Commercial Acquired 2003</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT corporate history / division page</td>
+                <td class="muted">—</td>
+              </tr>
+              <tr>
+                <td>Revinre / HUNT AZ acquisition — July 1, 2024</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">LinkedIn Pulse announcement by Revinre; verified via multiple real estate news sources</td>
+                <td class="muted">Revinre opened new Gilbert, AZ office at Greenfield Commons post-acquisition</td>
+              </tr>
+              <tr>
+                <td>HUNT Core Services #5 Nationally / #1 NY</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">HUNT blog, April 2023; RealTrends Core Services Provider rankings</td>
+                <td class="muted">Reflects 2023 data (most recent Core Services ranking found)</td>
+              </tr>
+              <tr>
+                <td>Buffalo / Niagara 2024 Median Price ($250,000)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">BNAR (Buffalo Niagara Association of Realtors); Buffalo News, January 2025</td>
+                <td class="muted">Record high; +6.4% YoY</td>
+              </tr>
+              <tr>
+                <td>Rochester Median Listing Price (~$299,900, +15.6%)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Realtor.com / GRAR Q2 2024 press release; Rochester Beacon, September 2024</td>
+                <td class="muted">July 2024 data point; Rochester listed as fastest-selling large metro nationally</td>
+              </tr>
+              <tr>
+                <td>Greater Rochester Closed Sales 2023 (10,582)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">GRAR (Greater Rochester Association of Realtors)</td>
+                <td class="muted">2024 full-year figure not yet surfaced; 2023 used as most recent complete regional data</td>
+              </tr>
+              <tr>
+                <td>NYS Total Closed Sales 2024 (107,965)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">NYSAR (New York State Association of Realtors) 2024 Annual Report</td>
+                <td class="muted">Down 1.6% from 2023</td>
+              </tr>
+              <tr>
+                <td>Albany median price ($285K–$320K range)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Albany County data; Norada Real Estate Market Report 2025</td>
+                <td class="muted">January 2024 to January 2025 progression shown</td>
+              </tr>
+              <tr>
+                <td>Howard Hanna 2024 data ($33.74B, 92,154 sides)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Hanna Holdings press release; RealTrends Verified 2025</td>
+                <td class="muted">National ranking: #5 by sides, #7 by volume</td>
+              </tr>
+              <tr>
+                <td>MJ Peterson — 8 offices, 200+ agents</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">MJ Peterson website / public company profile</td>
+                <td class="muted">No annual sales volume published publicly</td>
+              </tr>
+              <tr>
+                <td>NAR Median Agent GCI ($58,100)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">NAR 2025 Member Profile (2024 income data)</td>
+                <td class="muted">Up from $55,800 in 2023</td>
+              </tr>
+              <tr>
+                <td>Agent Productivity — Top 20% do 65% of transactions</td>
+                <td><span class="tag tag-confirmed">Confirmed — 2025 research</span></td>
+                <td class="muted">Mike DelPrete, May 2025 (analysis of 3.4M sales, 840K producing agents)</td>
+                <td class="muted">Updates and revises the traditional "80/20 rule" which overstated concentration</td>
+              </tr>
+              <tr>
+                <td>CRM Adoption Rates (78% have / 73% avg use)</td>
+                <td><span class="tag tag-benchmark">Industry Benchmark</span></td>
+                <td class="muted">LLCBuddy CRM Statistics 2025; RISMedia 2022; NAR 2024</td>
+                <td class="muted">Active utilization materially lower than tool ownership</td>
+              </tr>
+              <tr>
+                <td>Agent Turnover Rate (6.8% annual)</td>
+                <td><span class="tag tag-benchmark">Industry Benchmark</span></td>
+                <td class="muted">HousingWire Agent Migration Study 2025</td>
+                <td class="muted">—</td>
+              </tr>
+              <tr>
+                <td>Brokerage EBITDA Margin (3.7%)</td>
+                <td><span class="tag tag-benchmark">Industry Benchmark</span></td>
+                <td class="muted">RealTrends Brokerage Benchmark Report</td>
+                <td class="muted">Excludes affiliated services contribution; RealTrends explicitly notes this margin improves materially with integrated mortgage/title/insurance</td>
+              </tr>
+              <tr>
+                <td>Mortgage / Title / Insurance Attachment Rates</td>
+                <td><span class="tag tag-benchmark">Industry Benchmark</span></td>
+                <td class="muted">HousingWire; BuilderOnline; Federal Title; RESPA ABA guidelines</td>
+                <td class="muted">No industry-wide published benchmark for resale-affiliated capture rates exists. Ranges shown are practitioner-cited estimates. Builder-affiliated lenders (70–90%) are not comparable to resale-affiliated lenders.</td>
+              </tr>
+              <tr>
+                <td>Cost Per Lead Benchmarks</td>
+                <td><span class="tag tag-benchmark">Industry Benchmark</span></td>
+                <td class="muted">First Page Sage 2025; Ylopo 2025; FetchFunnel 2025</td>
+                <td class="muted">—</td>
+              </tr>
+              <tr>
+                <td>GCI and Company Dollar Estimates (HUNT)</td>
+                <td><span class="tag tag-est">Estimated — derived</span></td>
+                <td class="muted">Calculated from confirmed volume ($3.65B) × industry-standard commission rates (2.5–2.8%) × company dollar retention benchmarks (20–30%)</td>
+                <td class="muted">HUNT does not publish revenue. Private company. All revenue estimates are approximations.</td>
+              </tr>
+              <tr>
+                <td>US Existing Home Sales 2025 (4.06M — flat vs. 2024)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">NAR; PBS NewsHour Jan 2026; Eye on Housing Jan 2026; CNBC Jan 14, 2026</td>
+                <td class="muted">Second consecutive year at the 30-year low. Dec 2025 SAAR: 4.35M — highest single month since Feb 2023.</td>
+              </tr>
+              <tr>
+                <td>National Median Sale Price — Dec 2025 ($405,400); Q3 2025 ($426,800)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">NAR; Eye on Housing Jan 2026</td>
+                <td class="muted">30th consecutive month of YoY price increases. Annual range 2025: ~$403K–$427K. Price appreciation slowed materially vs. 2024.</td>
+              </tr>
+              <tr>
+                <td>US Existing Home Sales 2024 (4.06M)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">NAR annual report; Eye on Housing; BuilderOnline</td>
+                <td class="muted">Lowest annual figure since 1995; nearly 30-year low</td>
+              </tr>
+              <tr>
+                <td>National Median Sale Price 2024 ($407,500 annual; $404,400 December)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">NAR December 2024 Existing-Home Sales Report</td>
+                <td class="muted">Record annual median high for 2024</td>
+              </tr>
+              <tr>
+                <td>New Home Sales 2024 (683,000)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Census Bureau / HUD; HousingWire</td>
+                <td class="muted">Up 2.5% from 2023; highest since 2021</td>
+              </tr>
+              <tr>
+                <td>Active Inventory / Months of Supply (December 2024)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">NAR; Calculated Risk</td>
+                <td class="muted">1.15M units; 3.3 months supply</td>
+              </tr>
+              <tr>
+                <td>Average 30-Year Fixed Mortgage Rate 2024 (~6.7%)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Freddie Mac PMMS / FRED</td>
+                <td class="muted">Range: ~6.1% (Sep/Oct low) to ~7.2%+ (spring high)</td>
+              </tr>
+              <tr>
+                <td>Total Mortgage Origination Volume 2024 (~$1.7–$1.8T)</td>
+                <td><span class="tag tag-est">Estimated</span></td>
+                <td class="muted">MBA forecast; ATTOM Q4 2024 Origination Report</td>
+                <td class="muted">MBA's final 2024 actuals not fully consolidated in all public sources at time of research; range well-supported by quarterly data</td>
+              </tr>
+              <tr>
+                <td>US Homeownership Rate 2024 (65.6%)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Census Bureau Housing Vacancy Survey (HVS); NAHB</td>
+                <td class="muted">Q2 and Q3 2024; below 25-year average of 66.4%</td>
+              </tr>
+              <tr>
+                <td>Anywhere Real Estate FY2025 financials ($5.96B revenue; −$90M net loss; $294M EBITDA; 935,344 sides)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Compass 8-K (Anywhere final standalone filing via StockTitan); MarketScreener; Anywhere Q3 2025 PR Newswire</td>
+                <td class="muted">Anywhere delisted from NYSE January 9, 2026; financials now reported within Compass consolidated filings</td>
+              </tr>
+              <tr>
+                <td>Compass acquisition of Anywhere — closed January 9, 2026</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">SEC filings; TipRanks; ResiClub Analytics. Merger vote: January 7, 2026. Close: January 9, 2026. Each HOUS share → 1.436 shares Compass Class A common stock.</td>
+                <td class="muted">Combined company: ~1.2M annual transactions; Compass 2025 standalone revenue $7.0B (record)</td>
+              </tr>
+              <tr>
+                <td>ERA Network size (43,000 agents; ~2,300 offices; ~$23.7B volume)</td>
+                <td><span class="tag tag-est">ERA-published — not independently verified</span></td>
+                <td class="muted">ERA.com network marketing materials; Anywhere Real Estate Wikipedia</td>
+                <td class="muted">Self-reported network figures; ERA does not file separate public financials from Anywhere</td>
+              </tr>
+              <tr>
+                <td>Compass FY2024 Volume ($184B)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">RealTrends Verified 2024; HousingWire</td>
+                <td class="muted">RealTrends 2024 rankings use 2023 calendar year transaction data (one-year lag is standard)</td>
+              </tr>
+              <tr>
+                <td>eXp Realty Sides (355,052)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">RealTrends Verified 2024; HousingWire</td>
+                <td class="muted">Same one-year lag caveat as above</td>
+              </tr>
+              <tr>
+                <td>US Brokerage Industry Revenue ($238.5B)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">IBISWorld 2024</td>
+                <td class="muted">Up 3.1% in 2024</td>
+              </tr>
+              <tr>
+                <td>NAR Membership (1,523,695)</td>
+                <td><span class="tag tag-confirmed">Confirmed</span></td>
+                <td class="muted">Real Estate News; HousingWire, December 2024</td>
+                <td class="muted">Held above 1.5M through October 2024; declined below 1.5M entering January 2025</td>
+              </tr>
+              <tr>
+                <td>Total US Licensed Agents (~3 million)</td>
+                <td><span class="tag tag-est">Estimated</span></td>
+                <td class="muted">ARELLO estimate via HomeLight</td>
+                <td class="muted">Includes licensed agents who are not NAR members</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="divider" />
+
+        <p class="sub-label">Data Gaps — Items Not Available Through Public Sources</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data Point</th>
+                <th>Why Not Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HUNT actual revenue / P&amp;L / EBITDA</td>
+                <td class="muted">Private company; no public filing requirement</td>
+              </tr>
+              <tr>
+                <td>HUNT Mortgage actual loan volume or attachment rate</td>
+                <td class="muted">Not disclosed publicly; HMDA data available via CFPB but not surface-searched to extract loan count</td>
+              </tr>
+              <tr>
+                <td>Network Title Agency revenue or attachment rate</td>
+                <td class="muted">Not disclosed publicly</td>
+              </tr>
+              <tr>
+                <td>HUNT Insurance Agency revenue or attachment rate</td>
+                <td class="muted">Not disclosed publicly</td>
+              </tr>
+              <tr>
+                <td>HUNT Commercial Real Estate volume or revenue</td>
+                <td class="muted">Not disclosed publicly; commercial data not aggregated in any public ranking source found</td>
+              </tr>
+              <tr>
+                <td>HUNT market share by subregion (WNY, Rochester, etc.)</td>
+                <td class="muted">No regional MLS or association publishes market share by brokerage in a publicly accessible format for these markets</td>
+              </tr>
+              <tr>
+                <td>HUNT agent productivity distribution (internal 20/80 data)</td>
+                <td class="muted">Not disclosed publicly; industry distribution data provided as proxy</td>
+              </tr>
+              <tr>
+                <td>HUNT CRM adoption rate or tech stack utilization data</td>
+                <td class="muted">Not disclosed publicly; industry benchmarks provided as proxy</td>
+              </tr>
+              <tr>
+                <td>FY2021 exact volume and transaction count</td>
+                <td class="muted">No press release or ranking citation found in public searches; estimate interpolated</td>
+              </tr>
+              <tr>
+                <td>Southern Tier and North Country market-level price/volume data</td>
+                <td class="muted">Smaller submarkets with no centrally published association data surfaced in searches; statewide NYSAR data used as proxy</td>
+              </tr>
+              <tr>
+                <td>MJ Peterson, Coldwell Banker Prime, regional BHHS affiliate annual volume</td>
+                <td class="muted">Private companies; no public rankings or press releases found publishing annual volume for these entities</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DOCUMENT FOOTER
+    ============================================================ -->
+    <div class="doc-footer">
+      <p>
+        This document was prepared for Steve Buck, President, Venturis Financial. All data is derived from publicly available sources including HUNT Real Estate ERA press releases, RISMedia Power Broker Report, RealTrends Verified, NAR Member Profile (2025), NYSAR, GRAR, BNAR, HousingWire, WAV Group, Mike DelPrete analytics, and regional real estate association data. HUNT Real Estate ERA is a private company and has not filed or released audited financial statements. All revenue, GCI, and affiliated services figures are derived estimates based on publicly confirmed volume data and industry benchmark assumptions. "Estimated" labels appear on all derived or unconfirmed figures throughout this document. This document contains no recommendations, product mentions, or editorial assessments. Data as of June 2026; most recent HUNT performance data reflects FY2024 (November 1, 2023 – October 31, 2024).
+      </p>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+</body>
+</html>
